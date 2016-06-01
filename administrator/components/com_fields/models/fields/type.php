@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_fields
- * 
+ *
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -27,14 +27,7 @@ class JFormFieldType extends JFormFieldList
 	{
 		$options = parent::getOptions();
 
-		$paths = array();
-		$paths[] = JPATH_ADMINISTRATOR . '/components/com_fields/models/types';
-
-		if ($this->element['component'])
-		{
-			$paths[] = JPATH_ADMINISTRATOR . '/components/' . $this->element['component'] . '/models/types';
-		}
-
+		$paths = JFormHelper::addFieldPath(JPATH_ADMINISTRATOR . '/components/com_fields/models/fields');
 		foreach ($paths as $path)
 		{
 			if (! JFolder::exists($path))
@@ -42,10 +35,18 @@ class JFormFieldType extends JFormFieldList
 				continue;
 			}
 			// Looping trough the types
-			foreach (JFolder::files($path, 'php', false, true) as $filePath)
+			foreach (JFolder::files($path, 'php') as $filePath)
 			{
 				$name = str_replace('.php', '', basename($filePath));
-				if ($name == 'base')
+				$className = JFormHelper::loadFieldClass($name);
+				if ($className === false)
+				{
+					continue;
+				}
+
+				// Check if the field implements JFormDomFieldInterface
+				$interfaces = (new ReflectionClass($className))->getInterfaceNames();
+				if (!in_array('JFormDomFieldInterface', $interfaces))
 				{
 					continue;
 				}
