@@ -1133,4 +1133,17 @@ abstract class JFormField
 	protected function postProcessDomNode ($field, DOMElement $fieldNode, JForm $form)
 	{
 	}
+
+	/**
+	 * Returns the attributes of the field as an XML string which can be loaded
+	 * into JForm.
+	 *
+	 * @return string
+	 *
+	 * @since 3.7
+	 */
+	public function getFormAttributes()
+	{
+		return '';
+	}
 }
