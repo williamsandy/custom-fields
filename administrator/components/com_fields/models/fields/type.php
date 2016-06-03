@@ -8,6 +8,8 @@
  */
 defined('_JEXEC') or die;
 
+use Joomla\String\StringHelper;
+
 JFormHelper::loadFieldClass('list');
 JLoader::import('joomla.filesystem.folder');
 
@@ -15,6 +17,24 @@ class JFormFieldType extends JFormFieldList
 {
 
 	public $type = 'Type';
+
+	/**
+	 * This is an array of fields which do extend the list form field,
+	 * but are not supported and should not be shown as types.
+	 */
+	private static $unsupportedFields = array(
+			'accesslevel',
+			'cachehandler',
+			'combo',
+			'databaseconnection',
+			'filelist',
+			'folderlist',
+			'plugins',
+			'radio',
+			'section',
+			'sessionhandler',
+			'type'
+	);
 
 	public function setup (SimpleXMLElement $element, $value, $group = null)
 	{
@@ -38,6 +58,11 @@ class JFormFieldType extends JFormFieldList
 			foreach (JFolder::files($path, 'php') as $filePath)
 			{
 				$name = str_replace('.php', '', basename($filePath));
+				if (in_array($name, self::$unsupportedFields))
+				{
+					continue;
+				}
+
 				$className = JFormHelper::loadFieldClass($name);
 				if ($className === false)
 				{
@@ -45,8 +70,8 @@ class JFormFieldType extends JFormFieldList
 				}
 
 				// Check if the field implements JFormDomFieldInterface
-				$interfaces = (new ReflectionClass($className))->getInterfaceNames();
-				if (!in_array('JFormDomFieldInterface', $interfaces))
+				$reflection = new ReflectionClass($className);
+				if (!$reflection->isInstantiable() || !$reflection->implementsInterface('JFormDomFieldInterface'))
 				{
 					continue;
 				}
@@ -54,7 +79,7 @@ class JFormFieldType extends JFormFieldList
 				$label = 'COM_FIELDS_TYPE_' . strtoupper($name);
 				if (! JFactory::getLanguage()->hasKey($label))
 				{
-					$label = JString::ucfirst($name);
+					$label = StringHelper::ucfirst($name);
 				}
 				$options[] = JHtml::_('select.option', $name, JText::_($label));
 			}

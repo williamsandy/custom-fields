@@ -15,7 +15,7 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  11.1
  */
-class JFormFieldList extends JFormField
+class JFormFieldList extends JFormField implements JFormDomFieldInterface
 {
 	/**
 	 * The form field type.
@@ -152,5 +152,40 @@ class JFormFieldList extends JFormField
 		reset($options);
 
 		return $options;
+	}
+
+	/**
+	 * Returns an array of key values to put in a list from the given field.
+	 *
+	 * @param stdClass $field
+	 * @return array
+	 */
+	public static function getOptionsFromField($field)
+	{
+		$options = $field->fieldparams->get('options', array());
+		if (!is_array($options))
+		{
+			$options = json_decode($options);
+		}
+		$data = array();
+		if (isset($options->key))
+		{
+			foreach ($options->key as $index => $key)
+			{
+				$data[$key] = $options->value[$index];
+			}
+		}
+		return $data;
+	}
+
+	protected function postProcessDomNode($field, DOMElement $fieldNode, JForm $form)
+	{
+		foreach (self::getOptionsFromField($field) as $index => $value)
+		{
+			$element = $fieldNode->appendChild(new DOMElement('option', $value));
+			$element->setAttribute('value', $index);
+		}
+
+		return parent::postProcessDomNode($field, $fieldNode, $form);
 	}
 }

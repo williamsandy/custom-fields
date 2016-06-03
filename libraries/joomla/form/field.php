@@ -1142,8 +1142,14 @@ abstract class JFormField
 	 *
 	 * @since 3.7
 	 */
-	public function getFormAttributes()
+	public function getFormParameters()
 	{
+		$reflectionClass = new ReflectionClass($this);
+		$fileName = __DIR__ . '/parameters/' . str_replace('.php', '.xml', basename($reflectionClass->getFileName()));
+		if (JFile::exists($fileName))
+		{
+			return JFile::read($fileName);
+		}
 		return '';
 	}
 }
