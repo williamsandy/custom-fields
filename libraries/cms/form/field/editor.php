@@ -18,7 +18,7 @@ JFormHelper::loadFieldClass('textarea');
  * @see    JEditor
  * @since  1.6
  */
-class JFormFieldEditor extends JFormFieldTextarea implements JFormDomFieldInterface
+class JFormFieldEditor extends JFormFieldTextarea implements JFormDomfieldinterface
 {
 	/**
 	 * The form field type.

@@ -9,8 +9,6 @@
 
 defined('JPATH_PLATFORM') or die;
 
-JLoader::import('libraries.joomla.form.domfieldinterface', JPATH_ROOT);
-
 /**
  * Abstract Form Field class for the Joomla Platform.
  *
@@ -1068,7 +1066,7 @@ abstract class JFormField
 	/**
 	 * Transforms the field into an XML element and appends it as child on the given parent. This
 	 * is the default implementation of a field. Form fields which do support to be transformed into
-	 * an XML Element mut implemet the JFormDomFieldInterface.
+	 * an XML Element mut implemet the JFormDomfieldinterface.
 	 *
 	 * @param stdClass $field
 	 * @param DOMElement $parent
@@ -1076,7 +1074,7 @@ abstract class JFormField
 	 * @return DOMElement
 	 *
 	 * @since 3.7
-	 * @see JFormDomFieldInterface::appendXMLFieldTag
+	 * @see JFormDomfieldinterface::appendXMLFieldTag
 	 */
 	public function appendXMLFieldTag ($field, DOMElement $parent, JForm $form)
 	{

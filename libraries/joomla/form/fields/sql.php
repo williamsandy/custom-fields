@@ -16,7 +16,7 @@ JFormHelper::loadFieldClass('list');
  *
  * @since  11.1
  */
-class JFormFieldSQL extends JFormFieldList implements JFormDomFieldInterface
+class JFormFieldSQL extends JFormFieldList implements JFormDomfieldinterface
 {
 	/**
 	 * The form field type.

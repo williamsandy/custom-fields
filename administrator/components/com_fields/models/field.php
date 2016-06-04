@@ -612,7 +612,7 @@ class FieldsModelField extends JModelAdmin
 		$type = JFormHelper::loadFieldType($type);
 
 		// Load all children that's why we need to define the xpath
-		if (!($type instanceof JFormDomFieldInterface))
+		if (!($type instanceof JFormDomfieldinterface))
 		{
 			return;
 		}

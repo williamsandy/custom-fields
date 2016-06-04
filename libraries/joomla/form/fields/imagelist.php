@@ -16,7 +16,7 @@ JFormHelper::loadFieldClass('filelist');
  *
  * @since  11.1
  */
-class JFormFieldImageList extends JFormFieldFileList implements JFormDomFieldInterface
+class JFormFieldImageList extends JFormFieldFileList implements JFormDomfieldinterface
 {
 	/**
 	 * The form field type.

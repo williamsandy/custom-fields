@@ -15,9 +15,9 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  11.1
  */
-class JFormFieldList extends JFormField implements JFormDomFieldInterface
+class JFormFieldList extends JFormField implements JFormDomfieldinterface
 {
-	/**
+	/**nukan
 	 * The form field type.
 	 *
 	 * @var    string

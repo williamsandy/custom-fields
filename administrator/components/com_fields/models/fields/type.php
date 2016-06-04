@@ -69,9 +69,9 @@ class JFormFieldType extends JFormFieldList
 					continue;
 				}
 
-				// Check if the field implements JFormDomFieldInterface
+				// Check if the field implements JFormDomfieldinterface
 				$reflection = new ReflectionClass($className);
-				if (!$reflection->isInstantiable() || !$reflection->implementsInterface('JFormDomFieldInterface'))
+				if (!$reflection->isInstantiable() || !$reflection->implementsInterface('JFormDomfieldinterface'))
 				{
 					continue;
 				}

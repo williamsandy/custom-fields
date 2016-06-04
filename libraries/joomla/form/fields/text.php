@@ -16,7 +16,7 @@ defined('JPATH_PLATFORM') or die;
  * @link   http://www.w3.org/TR/html-markup/input.text.html#input.text
  * @since  11.1
  */
-class JFormFieldText extends JFormField implements JFormDomFieldInterface
+class JFormFieldText extends JFormField implements JFormDomfieldinterface
 {
 	/**
 	 * The form field type.

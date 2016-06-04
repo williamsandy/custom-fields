@@ -15,7 +15,7 @@ defined('JPATH_PLATFORM') or die;
  *
  * @since  1.6
  */
-class JFormFieldMedia extends JFormField implements JFormDomFieldInterface
+class JFormFieldMedia extends JFormField implements JFormDomfieldinterface
 {
 	/**
 	 * The form field type.

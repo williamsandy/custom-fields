@@ -16,7 +16,7 @@ defined('JPATH_PLATFORM') or die;
  * @link   http://www.w3.org/TR/html-markup/textarea.html#textarea
  * @since  11.1
  */
-class JFormFieldTextarea extends JFormField implements JFormDomFieldInterface
+class JFormFieldTextarea extends JFormField implements JFormDomfieldinterface
 {
 	/**
 	 * The form field type.

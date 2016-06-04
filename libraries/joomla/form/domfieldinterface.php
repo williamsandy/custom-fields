@@ -13,7 +13,7 @@ defined('JPATH_PLATFORM') or die();
  *
  * @since 3.7
  */
-interface JFormDomFieldInterface
+interface JFormDomfieldinterface
 {
 
 	/**
