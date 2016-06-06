@@ -46,6 +46,7 @@ class JFormFieldImageList extends JFormFieldFileList implements JFormDomfieldint
 	protected function postProcessDomNode ($field, DOMElement $fieldNode, JForm $form)
 	{
 		$fieldNode->setAttribute('hide_default', 'true');
+		$fieldNode->setAttribute('directory', '/images/' . $fieldNode->getAttribute('directory'));
 
 		return parent::postProcessDomNode($field, $fieldNode, $form);
 	}
